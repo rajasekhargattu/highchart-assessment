@@ -12,6 +12,10 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 ![Image description](https://github.com/rajasekhargattu/highchart-assessment/blob/master/highchat-assessment.JPG)
 
+if fillOpacity: 0 comment
+
+![Image description](https://github.com/rajasekhargattu/highchart-assessment/blob/master/highchat-assessment-2.JPG)
+
 The page will reload if you make edits.<br />
 You will also see any lint errors in the console.
 
