@@ -1,17 +1,18 @@
 import { chartData } from './StackedAreaChartData';
 export const options = {
-  chart: {
-    type: 'area'
-  },
+  chart: {},
   title: {
     text: chartData.title
   },
 
   xAxis: {
+    allowDecimals: false,
+    type: 'category',
     categories: chartData.years,
-    tickmarkPlacement: 'on',
-    title: {
-      enabled: false
+    labels: {
+      formatter: function() {
+        return this.value;
+      }
     }
   },
   yAxis: {
@@ -20,7 +21,7 @@ export const options = {
     },
     labels: {
       formatter: function() {
-        return this.value / 10000000;
+        return this.value;
       }
     }
   },
@@ -28,48 +29,71 @@ export const options = {
     split: true
   },
   plotOptions: {
-    pointStart: 2012,
-    area: {
-      stacking: 'normal',
-      lineColor: '#666666',
-      lineWidth: 1
-    }
-  },
-  legend: {
-    layout: 'vertical',
-    align: 'right',
-    verticalAlign: 'middle'
-  },
+    series: {
+      pointStart: 2012,
+      fillColor: '#004d40'
+    },
 
-  series: [
-    {
-      name: 'BaseLine',
-      data: chartData.baseLine,
-      fillOpacity: 0
-    },
-    {
-      name: 'Scen 1',
-      data: chartData.scen1
-    },
-    {
-      name: 'Scen 2',
-      data: chartData.scen2
-    }
-  ],
-  responsive: {
-    rules: [
-      {
-        condition: {
-          maxWidth: 500
-        },
-        chartOptions: {
-          legend: {
-            layout: 'horizontal',
-            align: 'center',
-            verticalAlign: 'bottom'
+    area: {
+      //   stacking: 'normal',
+      enableMouseTracking: false,
+      marker: {
+        symbol: 'circle',
+        radius: 3,
+        states: {
+          hover: {
+            enabled: false
           }
         }
       }
-    ]
-  }
+    }
+  },
+  series: [
+    {
+      name: 'BaseLine',
+      type: 'area',
+      data: chartData.baseLine,
+      color: '#004d40',
+      zoneAxis: 'x',
+      zones: [
+        {
+          value: 2020,
+          fillColor: 'rgba(255,255,255,0.1)'
+        },
+        {
+          value: 2023,
+          fillColor: '#e91e63'
+        },
+        {
+          color: 'rgba(255,255,255,0.1)'
+        }
+      ]
+    },
+
+    {
+      name: 'Scen 1',
+      data: chartData.scen1,
+      type: 'area',
+      color: '#e91e63',
+      zoneAxis: 'x',
+      zones: [
+        {
+          fillColor: '#e91e63'
+        }
+      ]
+    },
+    {
+      name: 'Scen 2',
+      type: 'area',
+      data: chartData.scen2,
+      color: '#4a148c',
+      zoneAxis: 'x',
+      zones: [
+        {
+          value: 2028,
+          fillColor: 'rgba(255,255,255,1)'
+        }
+      ]
+    }
+  ]
 };
